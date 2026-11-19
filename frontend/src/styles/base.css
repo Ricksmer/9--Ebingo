@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--felt-800);
+  /* Felt: spotlight, vignette, and a fine woven dot texture. */
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(242, 182, 50, 0.16), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 120%, rgba(0, 0, 0, 0.55), transparent 60%),
+    radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1.2px),
+    radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1.2px);
+  background-size: auto, auto, 6px 6px, 6px 6px;
+  background-position: 0 0, 0 0, 0 0, 3px 3px;
+  background-attachment: fixed;
+}
+
+/* Scattered marquee bulbs along the top edge. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 10px;
+  z-index: 2;
+  background: radial-gradient(circle, var(--marigold) 2.4px, transparent 3px) 0 50% / 28px 10px repeat-x;
+  filter: drop-shadow(0 0 4px rgba(242, 182, 50, 0.9));
+  animation: bulbs 2.4s steps(2, jump-none) infinite;
+  pointer-events: none;
+}
+
+@keyframes bulbs {
+  50% {
+    background-position: 14px 50%;
+  }
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--marigold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

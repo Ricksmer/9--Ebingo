@@ -1,0 +1,75 @@
+.board__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.board__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+.board__title span {
+  color: var(--brass);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.board__actions {
+  display: flex;
+  gap: 10px;
+}
+.board__actions button {
+  height: 40px;
+  padding: 0 18px;
+  border: 1.5px solid var(--brass);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--brass);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.board__actions button:hover:not(:disabled) {
+  background: var(--brass);
+  color: var(--felt-900);
+}
+.board__actions button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.board__actions .board__danger {
+  border-color: rgba(255, 141, 119, 0.6);
+  color: #ff8d77;
+}
+.board__actions .board__danger:hover {
+  background: #ff8d77;
+  color: var(--felt-900);
+}
+
+.board__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+  gap: clamp(18px, 2.4vw, 32px);
+}
+
+.board--empty {
+  padding: clamp(32px, 6vw, 64px);
+  border: 2px dashed var(--brass-dim);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--cream-dim);
+}
+.board__empty-big {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--cream);
+}

@@ -1,0 +1,30 @@
+:root {
+  /* Felt & brass bingo hall */
+  --felt-900: #06201c;
+  --felt-800: #0b2e28;
+  --felt-700: #11413a;
+  --felt-600: #195a50;
+
+  --cream: #f4ead2;
+  --cream-dim: #b9b196;
+  --paper: #f6edd6;
+  --paper-shade: #e5d7b4;
+  --ink: #1d1a16;
+  --ink-soft: #5b5446;
+
+  --vermilion: #e4472b;
+  --vermilion-deep: #b72f18;
+  --marigold: #f2b632;
+  --brass: #d7a64a;
+  --brass-dim: rgba(215, 166, 74, 0.35);
+  --mint: #3fc8a6;
+
+  --font-display: 'Chonburi', 'Georgia', serif;
+  --font-body: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
+  --font-mono: 'Martian Mono', 'Courier New', monospace;
+
+  --radius: 14px;
+  --shadow-card: 0 2px 0 rgba(0, 0, 0, 0.25), 0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

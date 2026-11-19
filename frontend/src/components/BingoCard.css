@@ -1,0 +1,178 @@
+.bcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 16px 14px;
+  color: var(--ink);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.7), transparent 45%),
+    linear-gradient(170deg, var(--paper), var(--paper-shade));
+  box-shadow: var(--shadow-card);
+  animation: card-deal 0.7s var(--ease-out) var(--delay, 0ms) backwards;
+}
+
+@keyframes card-deal {
+  from {
+    transform: translateY(40px) rotate(var(--tilt, -3deg));
+    opacity: 0;
+  }
+}
+.bcard:nth-child(even) {
+  --tilt: 3deg;
+}
+
+.bcard__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed rgba(29, 26, 22, 0.25);
+}
+.bcard__no {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.bcard__game {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.bcard__remove {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(29, 26, 22, 0.1);
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.bcard__remove:hover {
+  background: var(--vermilion);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.bcard__letters {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.bcard__letters span {
+  padding: 4px 0;
+  border-radius: 6px;
+  background: var(--felt-800);
+  color: var(--marigold);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.6vw, 1.4rem);
+}
+
+.bcard__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.bcard__foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 6px 10px;
+}
+.bcard__msg {
+  grid-column: 1;
+  min-height: 1.3em;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.bcard__msg.is-win {
+  color: #0d7a5f;
+}
+.bcard__msg.is-error {
+  color: var(--vermilion-deep);
+}
+
+.bcard__check {
+  grid-column: 2;
+  grid-row: 1;
+  height: 38px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--felt-800);
+  color: var(--marigold);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  box-shadow: 0 3px 0 var(--felt-900);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.2s;
+}
+.bcard__check:hover:not(:disabled) {
+  background: var(--felt-600);
+}
+.bcard__check:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--felt-900);
+}
+.bcard__check:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.bcard__token {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(29, 26, 22, 0.45);
+}
+
+/* Winner state */
+.bcard.is-win {
+  box-shadow: 0 0 0 3px var(--marigold), 0 0 40px rgba(242, 182, 50, 0.55), var(--shadow-card);
+  animation: card-deal 0.7s var(--ease-out) var(--delay, 0ms) backwards, win-glow 1.8s ease-in-out infinite;
+}
+@keyframes win-glow {
+  50% {
+    box-shadow: 0 0 0 3px var(--marigold), 0 0 64px rgba(242, 182, 50, 0.9), var(--shadow-card);
+  }
+}
+
+.bcard__stamp {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  padding: 4px 22px;
+  border: 5px solid var(--vermilion);
+  border-radius: 10px;
+  color: var(--vermilion);
+  background: rgba(246, 237, 214, 0.55);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  letter-spacing: 0.06em;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  animation: stamp 0.55s var(--ease-spring) backwards;
+}
+@keyframes stamp {
+  from {
+    transform: translate(-50%, -50%) rotate(-14deg) scale(3.2);
+    opacity: 0;
+  }
+}

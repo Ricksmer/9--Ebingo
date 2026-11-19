@@ -1,0 +1,113 @@
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.masthead__balls {
+  display: flex;
+}
+
+.masthead__ball {
+  --size: clamp(44px, 6vw, 64px);
+  width: var(--size);
+  height: var(--size);
+  margin-left: calc(var(--size) * -0.16);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: calc(var(--size) * 0.5);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9) 0 12%, transparent 13%),
+    radial-gradient(circle at 50% 50%, var(--cream) 0 52%, var(--ball, var(--vermilion)) 53%);
+  box-shadow: 0 8px 14px -4px rgba(0, 0, 0, 0.6), inset 0 -6px 10px rgba(0, 0, 0, 0.25);
+  animation: ball-drop 0.9s var(--ease-spring) backwards;
+  animation-delay: calc(var(--i) * 110ms);
+}
+.masthead__ball:first-child {
+  margin-left: 0;
+}
+.masthead__ball--0 { --ball: var(--vermilion); }
+.masthead__ball--1 { --ball: var(--marigold); }
+.masthead__ball--2 { --ball: var(--mint); }
+.masthead__ball--3 { --ball: #5b8def; }
+.masthead__ball--4 { --ball: #c76bd6; }
+
+@keyframes ball-drop {
+  from {
+    transform: translateY(-140px) rotate(-120deg);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+.masthead__text {
+  flex: 1 1 260px;
+}
+
+.masthead__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--marigold);
+  text-shadow: 0 3px 0 var(--vermilion-deep), 0 8px 24px rgba(0, 0, 0, 0.45);
+  animation: rise 0.7s var(--ease-out) 0.5s backwards;
+}
+
+.masthead__tag {
+  margin: 8px 0 0;
+  color: var(--cream-dim);
+  animation: rise 0.7s var(--ease-out) 0.65s backwards;
+}
+
+.masthead__stats {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  animation: rise 0.7s var(--ease-out) 0.8s backwards;
+}
+
+.masthead__stats div {
+  min-width: 84px;
+  padding: 8px 14px;
+  border: 1px solid var(--brass-dim);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+
+.masthead__stats dt {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+.masthead__stats dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.masthead__stats dd.is-hot {
+  color: var(--marigold);
+  text-shadow: 0 0 14px rgba(242, 182, 50, 0.8);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}

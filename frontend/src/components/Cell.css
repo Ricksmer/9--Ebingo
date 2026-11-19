@@ -1,0 +1,94 @@
+.cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1.5px solid rgba(29, 26, 22, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--ink);
+  overflow: hidden;
+  transition: background 0.2s, transform 0.15s var(--ease-spring);
+}
+
+.cell:hover:not(:disabled):not(.is-marked) {
+  background: rgba(242, 182, 50, 0.35);
+  transform: translateY(-2px);
+}
+.cell:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.cell__value {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 2.6vw, 1.45rem);
+}
+
+.cell__free {
+  position: absolute;
+  bottom: 12%;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* The ink dauber blot. */
+.cell__dab {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50% 46% 52% 48% / 48% 52% 46% 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.55) 0 8%, transparent 9%),
+    radial-gradient(circle, var(--vermilion) 0 62%, var(--vermilion-deep) 100%);
+  opacity: 0;
+  transform: scale(0.2) rotate(-20deg);
+  mix-blend-mode: multiply;
+}
+
+.cell.is-marked .cell__dab {
+  opacity: 0.88;
+  transform: scale(1) rotate(0);
+  animation: dab 0.38s var(--ease-spring);
+}
+
+.cell.is-marked .cell__value {
+  color: var(--paper);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+@keyframes dab {
+  0% {
+    transform: scale(2.1) rotate(-20deg);
+    opacity: 0;
+  }
+  55% {
+    transform: scale(0.85);
+    opacity: 1;
+  }
+}
+
+.cell.is-free {
+  background: repeating-linear-gradient(45deg, rgba(242, 182, 50, 0.38) 0 6px, rgba(242, 182, 50, 0.2) 6px 12px);
+  cursor: default;
+}
+.cell.is-free .cell__dab {
+  background: radial-gradient(circle, var(--marigold) 0 58%, #c78a0b 100%);
+}
+
+/* Cells that complete a line glow gold. */
+.cell.is-line {
+  border-color: var(--marigold);
+  box-shadow: inset 0 0 0 2px var(--marigold), 0 0 14px rgba(242, 182, 50, 0.7);
+  animation: line-pulse 1.6s ease-in-out infinite;
+}
+@keyframes line-pulse {
+  50% {
+    box-shadow: inset 0 0 0 2px var(--marigold), 0 0 22px rgba(242, 182, 50, 1);
+  }
+}
